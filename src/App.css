@@ -1,0 +1,691 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.pagina {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.conteudo {
+  flex: 1;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) 64px;
+}
+
+/* ==========================================================
+   🎯 NAVBAR — fixa no topo, translúcida (estilo Netflix/Prime)
+   ========================================================== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 68px;
+  padding: 0 var(--gutter);
+  background: linear-gradient(
+    180deg,
+    rgba(11, 12, 16, 0.96) 0%,
+    rgba(11, 12, 16, 0.82) 100%
+  );
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 251, 0, 0.35);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* 🐱 Logo + nome */
+.navbar-marca-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+}
+
+.logo-navbar {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(255, 251, 0, 0.35));
+}
+
+.navbar-marca {
+  margin: 0;
+  font-weight: 900;
+  font-size: 1.6rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-shadow: 0 0 18px rgba(255, 251, 0, 0.25);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-links a {
+  position: relative;
+  padding: 8px 14px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.navbar-links a:hover {
+  color: var(--text-h);
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.link-interno-ativo {
+  color: var(--accent) !important;
+  border-bottom: 2px solid var(--accent);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
+}
+
+.botao-logout-navbar {
+  margin-left: 8px;
+  padding: 7px 18px;
+  background: transparent;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.botao-logout-navbar:hover {
+  background-color: var(--danger);
+  color: #fff;
+  box-shadow: 0 0 14px rgba(255, 71, 87, 0.45);
+}
+
+/* ==========================================================
+   🍿 HOME
+   ========================================================== */
+.home {
+  padding: 32px 0 0;
+  text-align: left;
+}
+
+.home h1 {
+  margin: 36px 0 6px;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--text-h);
+}
+
+.subtitulo-home {
+  margin: 0 0 28px;
+  color: var(--accent);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+/* Grade de pôsteres */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 28px 20px;
+  margin: 24px 0 40px;
+}
+
+.item-galeria-filme {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  will-change: transform;
+}
+
+.item-galeria-filme:hover,
+.item-galeria-filme:focus-within {
+  transform: scale(1.05);
+  z-index: 5;
+  border-color: var(--accent);
+  box-shadow: var(--shadow-glow);
+}
+
+.capa-filme {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+
+.info-filme-home {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 14px 14px 16px;
+  text-align: left;
+}
+
+.info-filme-home h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-h);
+}
+
+.categoria-badge {
+  align-self: flex-start;
+  margin-bottom: 10px;
+  padding: 3px 9px;
+  background-color: var(--accent);
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+
+.preco-filme {
+  margin-top: auto;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ==========================================================
+   🔐 LOGIN
+   ========================================================== */
+.formulario-login {
+  width: calc(100% - 32px);
+  max-width: 420px;
+  margin: 72px auto 0;
+  padding: 40px 36px;
+  background: linear-gradient(
+    180deg,
+    rgba(31, 40, 51, 0.95),
+    rgba(11, 12, 16, 0.95)
+  );
+  border: 1px solid rgba(255, 251, 0, 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+}
+
+.formulario-login h2 {
+  margin: 0 0 8px;
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--text-h);
+  text-align: left;
+}
+
+.formulario-login label {
+  display: block;
+  margin: 18px 0 6px;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.formulario-login input {
+  width: 100%;
+  padding: 13px 14px;
+  background-color: rgba(11, 12, 16, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formulario-login input:hover {
+  border-color: rgba(255, 251, 0, 0.5);
+}
+
+.formulario-login input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 251, 0, 0.18);
+}
+
+.formulario-login button {
+  width: 100%;
+  margin-top: 28px;
+  padding: 13px;
+  background-color: var(--accent);
+  color: var(--bg);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.formulario-login button:hover {
+  background-color: var(--accent-hover);
+  box-shadow: 0 0 20px rgba(255, 251, 0, 0.35);
+}
+
+.formulario-login button:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================
+   🛠️ GERENCIAMENTO INTERNO
+   ========================================================== */
+.filme-layout {
+  padding: 40px 0;
+}
+
+.filme-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.filme-cabecalho h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800;
+  color: #fff;
+}
+
+.link-topo,
+.link-voltar {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link-topo:hover,
+.link-voltar:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.item-cardapio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding: 20px 22px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid transparent;
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.item-cardapio:hover {
+  background-color: var(--surface-2);
+  border-left-color: var(--accent);
+}
+
+.item-cardapio h3 {
+  margin: 0 0 6px;
+  color: #fff;
+}
+
+.item-cardapio p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.controle-quantidade {
+  display: flex;
+  align-items: center;
+}
+
+.controle-quantidade button {
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.controle-quantidade button:hover {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+.controle-quantidade span {
+  min-width: 40px;
+  padding: 0 8px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+.botao-finalizar {
+  display: block;
+  margin: 32px auto 0;
+  padding: 14px 48px;
+  background-color: var(--accent);
+  color: var(--bg);
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 800;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.botao-finalizar:hover {
+  background-color: var(--accent-hover);
+  box-shadow: 0 0 22px rgba(255, 251, 0, 0.35);
+}
+
+.botao-finalizar:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================
+   🎥 DETALHES DO FILME
+   ========================================================== */
+.filme-detalhe-container {
+  max-width: 720px;
+  margin: 32px auto 0;
+  padding: 28px;
+  background: linear-gradient(180deg, var(--surface), #171e27);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+.filme-detalhe-container img {
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+}
+
+.filme-detalhe-container h2 {
+  margin: 16px 0 8px;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.botao-favorito {
+  background: none;
+  border: none;
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.botao-favorito:hover {
+  transform: scale(1.2);
+}
+
+/* ==========================================================
+   👤 RODAPÉ
+   ========================================================== */
+.rodape {
+  margin-top: auto;
+  padding: 36px var(--gutter);
+  background-color: #07080b;
+  border-top: 1px solid rgba(255, 251, 0, 0.35);
+  color: #8b8d90;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.rodape-titulo {
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ==========================================================
+   🎰 CARROSSEL — destaque principal (hero)
+   ========================================================== */
+.carrossel-container {
+  position: relative;
+  width: 100%;
+  height: clamp(300px, 46vw, 500px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.65);
+}
+
+.carrossel-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(20px, 4vw, 48px);
+  padding-bottom: 64px;
+  background-size: cover;
+  background-position: center;
+  text-align: left;
+  opacity: 0;
+  transition: opacity 0.9s ease-in-out;
+}
+
+/* Degradê para dar leitura ao texto sobre a imagem */
+.carrossel-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      90deg,
+      rgba(11, 12, 16, 0.92) 0%,
+      rgba(11, 12, 16, 0.55) 45%,
+      rgba(11, 12, 16, 0) 80%
+    ),
+    linear-gradient(0deg, rgba(11, 12, 16, 0.95) 0%, rgba(11, 12, 16, 0) 55%);
+  pointer-events: none;
+}
+
+.carrossel-slide.ativo {
+  opacity: 1;
+  z-index: 1;
+}
+
+.carrossel-conteudo {
+  position: relative;
+  z-index: 2;
+  max-width: 560px;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+}
+
+.carrossel-conteudo h2 {
+  margin: 12px 0 8px;
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.carrossel-conteudo p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #dcdddd;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.carrossel-badge-relevancia {
+  display: inline-block;
+  padding: 4px 10px;
+  background-color: var(--danger);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+
+.carrossel-seta {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  margin: 0 14px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(11, 12, 16, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.25s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+/* As setas aparecem ao passar o mouse (e sempre em telas de toque) */
+.carrossel-container:hover .carrossel-seta,
+.carrossel-seta:focus-visible {
+  opacity: 1;
+}
+
+.carrossel-seta:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.carrossel-seta.esquerda {
+  left: 0;
+}
+.carrossel-seta.direita {
+  right: 0;
+}
+
+.carrossel-indicadores {
+  position: absolute;
+  bottom: 22px;
+  left: clamp(20px, 4vw, 48px);
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+}
+
+.indicador {
+  width: 36px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: width 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.indicador:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.indicador.ativo {
+  width: 56px;
+  background-color: var(--danger);
+  box-shadow: 0 0 8px var(--danger);
+}
+
+/* ==========================================================
+   📱 RESPONSIVO
+   ========================================================== */
+@media (max-width: 768px) {
+  .navbar {
+    height: 60px;
+  }
+
+  .navbar-marca {
+    font-size: 1.3rem;
+  }
+
+  .logo-navbar {
+    height: 38px;
+  }
+
+  .navbar-links {
+    gap: 2px;
+  }
+
+  .navbar-links a {
+    padding: 6px 8px;
+    font-size: 0.85rem;
+  }
+
+  .galeria {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 20px 14px;
+  }
+
+  .item-cardapio {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .carrossel-seta {
+    opacity: 1;
+    width: 40px;
+    height: 40px;
+    margin: 0 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-marca {
+    display: none;
+  }
+
+  .formulario-login {
+    padding: 28px 22px;
+  }
+}

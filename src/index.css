@@ -1,0 +1,112 @@
+/* ==========================================================
+   TOKENS GLOBAIS — mesma paleta original, agora centralizada
+   ========================================================== */
+   :root {
+    --bg: #0b0c10;
+    --surface: #1f2833;
+    --surface-2: #28343f;
+    --text: #c5c6c7;
+    --text-h: #ffffff;
+    --accent: #fffb00;
+    --accent-hover: #ffbb01;
+    --danger: #ff4757;
+    --border: rgba(255, 255, 255, 0.08);
+  
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+  
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.55);
+    --shadow-glow: 0 0 0 1px var(--accent), 0 14px 34px rgba(255, 251, 0, 0.18);
+  
+    --gutter: clamp(16px, 4vw, 56px);
+    --font: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  
+    font: 16px/1.5 var(--font);
+    color-scheme: dark;
+    color: var(--text);
+    background: var(--bg);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    margin: 0;
+    background: var(--bg);
+  }
+  
+  /* Tela cheia, como Netflix / Prime / Disney+ */
+  #root {
+    width: 100%;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font);
+    color: var(--text-h);
+    letter-spacing: -0.01em;
+  }
+  
+  p {
+    margin: 0;
+  }
+  
+  img {
+    display: block;
+    max-width: 100%;
+  }
+  
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  
+  /* Foco visível para navegação por teclado */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  
+  /* Barra de rolagem escura */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #3a4652 var(--bg);
+  }
+  
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #3a4652;
+    border-radius: 10px;
+    border: 2px solid var(--bg);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
